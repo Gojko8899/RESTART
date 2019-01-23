@@ -13,7 +13,7 @@ function findSecondSmallestNum(someArray) {
       }
     }
   }
-  return someArray[1];
+  return someArray;
 }
 
 console.log(findSecondSmallestNum([4, 2, 2, -1, 6]));
