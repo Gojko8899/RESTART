@@ -8,27 +8,59 @@
 // * a     *
 // * frame *
 // *********
-
+rectangularFrame([
+  "moja",
+  "plava",
+  "sveska",
+  "je",
+  "u",
+  "stvari",
+  "ljubicasta"
+]);
 function rectangularFrame(someArray) {
   let element = [];
-  let temp = 9;
+  let beginAndFinishLine = creatFirstAndLastLine(someArray);
   let verticalLine = "";
+  let finalVerticalLIne = "";
 
   for (let i = 0; i < someArray.length; i++) {
     element = someArray[i];
-    verticalLine += "* ";
-    for (let j = 0; j < 9; j++) {
-      verticalLine += element[j];
-      if (element[j] === undefined) {
-        console.log(verticalLine[j]);
+    verticalLine = "* ";
+
+    for (let j = 0; j < beginAndFinishLine.length - 2; j++) {
+      if (j === beginAndFinishLine.length - 3) {
+        verticalLine += "*";
+      } else if (element[j] === undefined) {
+        verticalLine += " ";
+      } else {
+        verticalLine += element[j];
       }
     }
 
-    verticalLine += "\n";
-
+    finalVerticalLIne += verticalLine + "\n";
+    verticalLine = "* " + "\n";
     temp = "****";
   }
 
-  console.log(verticalLine);
+  console.log(
+    beginAndFinishLine + "\n" + finalVerticalLIne + beginAndFinishLine
+  );
 }
-rectangularFrame(["Hello", "World", "in", "a", "frame"]);
+function creatFirstAndLastLine(arrayToCheck) {
+  let longestWord;
+  let firstAndLastLine = "";
+  let stars = "****";
+
+  let temp = 0;
+  for (let k = 0; k < arrayToCheck.length; k++) {
+    longestWord = arrayToCheck[k];
+    for (let c = 0; c < longestWord.length; c++) {
+      stars += "*";
+    }
+    if (stars.length > firstAndLastLine.length) {
+      firstAndLastLine = stars;
+    }
+    stars = "****";
+  }
+  return firstAndLastLine;
+}
