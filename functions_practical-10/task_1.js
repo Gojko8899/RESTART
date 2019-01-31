@@ -1,50 +1,14 @@
-function transformArray(array, transformation) {
-  var newArray = [];
+// Write IIFE that replaces the first and the last element of the given array and prints out its elements.
+// 	Input array: [4, 5, 11, 9]
+// 	Output array: [ 9, 5, 11, 4]
 
-  for (var i = 0; i < array.length; i++) {
-    newArray[i] = transformation(array[i]);
+(function(someArray) {
+  let newArray = [];
+  newArray[0] = someArray[someArray.length - 1];
+
+  for (let i = 1; i < someArray.length - 1; i++) {
+    newArray[newArray.length] = someArray[i];
   }
-
-  return newArray;
-}
-
-function square(n) {
-  return n * n;
-}
-
-function double(n) {
-  return 2 * n;
-}
-
-function addOne(n) {
-  return n + 1;
-}
-
-var a = [1, 2, 3, 4, 5];
-var result;
-
-result = transformArray(a, square);
-console.log(result);
-
-result = transformArray(a, double);
-console.log(result);
-
-result = transformArray(a, addOne);
-console.log(result);
-
-result = transformArray([3, 4, 5], function(n) {
-  return n + 1;
-});
-console.log(result);
-
-var global = 123;
-
-var resetGlobal = function() {
-  global = arguments[0] || -1;
-};
-
-resetGlobal(10);
-console.log(global);
-
-resetGlobal(0);
-console.log(global);
+  newArray[newArray.length] = someArray[0];
+  console.log(newArray);
+})([4, 5, 11, 9]);
